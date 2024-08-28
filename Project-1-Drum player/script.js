@@ -1,3 +1,4 @@
+//mapping the keyword to the corresponding keycode
 const keyMapping = {
     "KeyQ": 81,
     "KeyW": 87,
@@ -9,12 +10,16 @@ const keyMapping = {
     "KeyI": 73,
     "KeyS": 83
 };
-
-window.addEventListener("keydown", function (event) {
-    const key = keyMapping[event.code]; // Get the numeric data-key from the mapping
+//adding event listener for keydown event on the window
+window.addEventListener("keydown", function(event) {
+    const key = keyMapping[event.code]; // Get the key code from the keyMapping object based on the pressed key
+   
+    // Use the key code to select the corresponding audio element in the HTML
     const audio = document.querySelector(`audio[data-key="${key}"]`);
-    if (audio) {
-        audio.currentTime = 0; // Rewind to the start
-        audio.play(); // Play the sound
-    }
+
+    if (!audio) return; // If the audio element doesn't exist, exit the function
+
+    audio.currentTime = 0; // Rewind to the start for quick repeat playing
+    audio.play(); // Play the audio
 });
+
