@@ -16,10 +16,12 @@ window.addEventListener("keydown", function(event) {
    
     // Use the key code to select the corresponding audio element in the HTML
     const audio = document.querySelector(`audio[data-key="${key}"]`);
+    const data_key = document.querySelector(`.key[data-key="${key}"]`);
 
     if (!audio) return; // If the audio element doesn't exist, exit the function
-
     audio.currentTime = 0; // Rewind to the start for quick repeat playing
     audio.play(); // Play the audio
+    data_key.classList.add("playing"); // Add the playing class to the pressed key    
+    this.setTimeout(() => data_key.classList.remove("playing"), 600);  // Remove the playing class after 10ms
 });
 

@@ -1,53 +1,87 @@
 html {
   font-size: 10px;
+  background: linear-gradient(45deg, #1a2a6c, #b21f1f, #96d834); /* Gradient background */
+  background-size: 400% 400%; /* Enlarge background for smooth animation */
+  animation: gradientAnimation 15s ease infinite; /* Animate the background gradient */
+}
 
-  background-size: cover;
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; } /* Start position */
+  50% { background-position: 100% 50%; } /* Middle position */
+  100% { background-position: 0% 50%; } /* End position (loop) */
 }
 
 body,
 html {
-  margin: 10;
-  padding: 10;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif; /* Font styling */
 }
 
 .keys {
   display: flex;
-  flex: 1;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap; /* Wrap keys in multiple lines if needed */
+  min-height: 100vh; /* Full viewport height */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
 }
 
 .key {
-  border: 0.5rem solid black;
-  border-radius: 0.5rem;
-  margin: 1rem;
-  font-size: 1.5rem;
-  padding: 1rem 0.5rem;
-  transition: all 0.07s ease;
-  width: 10rem;
-  text-align: center;
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  text-shadow: 0 0 0.5rem black;
+  border: 0.5rem solid black; /* Thick border */
+  border-radius: 0.5rem; /* Rounded corners */
+  margin: 1rem; /* Space between keys */
+  font-size: 1.5rem; /* Key font size */
+  padding: 1rem 0.5rem; /* Padding inside keys */
+  transition: all 0.07s ease; /* Smooth transitions */
+  width: 10rem; /* Fixed width */
+  text-align: center; /* Center text */
+  color: white; /* Text color */
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+  text-shadow: 0 0 0.5rem black; /* Text shadow */
+  cursor: pointer; /* Pointer cursor on hover */
+  position: relative; /* Position context for potential animations */
 }
 
+.key:hover {
+  background: rgba(255, 198, 0, 0.7); /* Change background color on hover */
+  border-color: #ffc600; /* Change border color on hover */
+  box-shadow: 0 0 1rem #ffc600; /* Glow effect on hover */
+  transform: translateY(-5px); /* Slight upward movement on hover */
+}
+
+@keyframes keyPressAnimation {
+  0% { transform: scale(1); } /* Start scale */
+  50% { transform: scale(1.2); } /* Enlarge during press */
+  100% { transform: scale(1); } /* Return to original size */
+}
+
+/* Key press effect */
 .playing {
-  transform: scale(1.1);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+  transform: scale(1.1); /* Slightly enlarge on press */
+  border-color: #ffc600; /* Change border color on press */
+  box-shadow: 0 0 1rem #ffc600; /* Glow effect on press */
+  animation: keyPressAnimation 0.15s ease; /* Animate key press */
 }
 
 kbd {
-  display: block;
-  font-size: 10rem;
+  display: block; /* Display as block */
+  font-size: 10rem; /* Large font size for key labels */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.key:hover kbd {
+  color: #ffc600; /* Change key label color on hover */
 }
 
 .sound {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 1rem;
-  color: #ffc600;
-  text-align: center;
+  font-size: 9px; /* Small font size for sound labels */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 1rem; /* Increase space between letters */
+  color: #ffc600; /* Yellow text color */
+  text-align: center; /* Center text */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.key:hover .sound {
+  color: white; /* Change sound label color on hover */
 }
